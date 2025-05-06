@@ -1,40 +1,46 @@
 import os
 import torch
-from torch.utils.ffi import create_extension
+from setuptools import setup
+from torch.utils.cpp_extension import BuildExtension, CppExtension, CUDAExtension
 
+# Directories
+this_dir = os.path.dirname(os.path.realpath(__file__))
+src_dir  = os.path.join(this_dir, 'src')
+cuda_obj = os.path.join(src_dir, 'cuda', 'crop_and_resize_kernel.cu.o')
 
-sources = ['src/crop_and_resize.c']
-headers = ['src/crop_and_resize.h']
-defines = []
-with_cuda = False
+# Common compile flags
+cpu_compile_args = ['-fopenmp', '-std=c99']
+nvcc_compile_args = ['-arch=sm_120', '-Xcompiler', '-fPIC']
 
-extra_objects = []
+ext_modules = []
+
+# 1) CPU‐only extension
+cpu_ext = CppExtension(
+    name='_ext.crop_and_resize_cpu',
+    sources=[os.path.join(src_dir, 'crop_and_resize.cpp')],
+    extra_compile_args=cpu_compile_args,
+)
+ext_modules.append(cpu_ext)
+
+# 2) CUDA extension (if available)
 if torch.cuda.is_available():
     print('Including CUDA code.')
-    sources += ['src/crop_and_resize_gpu.c']
-    headers += ['src/crop_and_resize_gpu.h']
-    defines += [('WITH_CUDA', None)]
-    extra_objects += ['src/cuda/crop_and_resize_kernel.cu.o']
-    with_cuda = True
+    gpu_ext = CUDAExtension(
+        name='_ext.crop_and_resize',
+        sources=[
+            os.path.join(src_dir, 'crop_and_resize_gpu.cpp')
+        ],
+        extra_objects=[cuda_obj],
+        extra_compile_args={
+            'cxx': cpu_compile_args,
+            'nvcc': nvcc_compile_args,
+        },
+    )
+    ext_modules.append(gpu_ext)
 
-extra_compile_args = ['-fopenmp', '-std=c99']
-
-this_file = os.path.dirname(os.path.realpath(__file__))
-print(this_file)
-sources = [os.path.join(this_file, fname) for fname in sources]
-headers = [os.path.join(this_file, fname) for fname in headers]
-extra_objects = [os.path.join(this_file, fname) for fname in extra_objects]
-
-ffi = create_extension(
-    '_ext.crop_and_resize',
-    headers=headers,
-    sources=sources,
-    define_macros=defines,
-    relative_to=__file__,
-    with_cuda=with_cuda,
-    extra_objects=extra_objects,
-    extra_compile_args=extra_compile_args
+# Setup
+setup(
+    name='crop_and_resize',
+    ext_modules=ext_modules,
+    cmdclass={'build_ext': BuildExtension},
 )
-
-if __name__ == '__main__':
-    ffi.build()

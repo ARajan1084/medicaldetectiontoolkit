@@ -1,34 +1,47 @@
+# build.py for nms_3D extension
 import os
 import torch
-from torch.utils.ffi import create_extension
+from setuptools import setup
+from torch.utils.cpp_extension import BuildExtension, CppExtension, CUDAExtension
 
+# Paths
+this_dir = os.path.dirname(os.path.realpath(__file__))
+src_dir  = os.path.join(this_dir, 'src')
+cuda_obj = os.path.join(src_dir, 'cuda', 'nms_kernel.cu.o')
 
-sources = ['src/nms.c']
-headers = ['src/nms.h']
-defines = []
-with_cuda = False
+# Common settings
+include_dirs  = [src_dir]
+define_macros = []
+ext_modules    = []
 
-if torch.cuda.is_available():
-    print('Including CUDA code.')
-    sources += ['src/nms_cuda.c']
-    headers += ['src/nms_cuda.h']
-    defines += [('WITH_CUDA', None)]
-    with_cuda = True
-
-this_file = os.path.dirname(os.path.realpath(__file__))
-print(this_file)
-extra_objects = ['src/cuda/nms_kernel.cu.o']
-extra_objects = [os.path.join(this_file, fname) for fname in extra_objects]
-
-ffi = create_extension(
-    '_ext.nms',
-    headers=headers,
-    sources=sources,
-    define_macros=defines,
-    relative_to=__file__,
-    with_cuda=with_cuda,
-    extra_objects=extra_objects
+# 1) CPU-only 3D NMS extension
+cpu_ext = CppExtension(
+    name='_ext.nms_3d_cpu',
+    sources=[os.path.join(src_dir, 'nms_3d.cpp')],
+    include_dirs=include_dirs,
+    define_macros=define_macros,
+    extra_compile_args=['-std=c++17'],
 )
+ext_modules.append(cpu_ext)
 
-if __name__ == '__main__':
-    ffi.build()
+# 2) GPU-enabled 3D NMS extension
+if torch.cuda.is_available():
+    gpu_ext = CUDAExtension(
+        name='_ext.nms_3d',
+        sources=[os.path.join(src_dir, 'nms_3d_cuda.cpp')],
+        include_dirs=include_dirs,
+        define_macros=define_macros,
+        extra_objects=[cuda_obj],
+        extra_compile_args={
+            'cxx': ['-std=c++17'],
+            'nvcc': ['-arch=sm_120', '-Xcompiler', '-fPIC'],
+        },
+    )
+    ext_modules.append(gpu_ext)
+
+# setuptools setup
+setup(
+    name='nms3d',
+    ext_modules=ext_modules,
+    cmdclass={'build_ext': BuildExtension},
+)
