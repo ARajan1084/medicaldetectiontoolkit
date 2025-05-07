@@ -1,15 +1,24 @@
+"""
+Re‑export symbols from the compiled nms extension.
 
-from torch.utils.ffi import _wrap_function
-from ._nms import lib as _lib, ffi as _ffi
+This file is intentionally small:
+* It does **not** depend on the legacy `torch.utils.ffi`.
+* Every symbol defined in `_nms` that isn’t private (`_foo`) is pushed into the
+  package namespace so you can write, e.g.:
 
-__all__ = []
-def _import_symbols(locals):
-    for symbol in dir(_lib):
-        fn = getattr(_lib, symbol)
-        if callable(fn):
-            locals[symbol] = _wrap_function(fn, _ffi)
-        else:
-            locals[symbol] = fn
-        __all__.append(symbol)
+    from _ext.nms import nms_cpu, nms_gpu, ...
 
-_import_symbols(locals())
+If you prefer to expose only specific names, replace the `__all__` definition
+with an explicit list.
+"""
+
+from . import _nms as _C  # compiled C++/CUDA module produced by setup.py
+
+# All public attributes (skip those that start with an underscore)
+__all__ = [name for name in dir(_C) if not name.startswith("_")]
+
+# Inject those symbols into the current module’s globals()
+globals().update({name: getattr(_C, name) for name in __all__})
+
+# Optional: tidy up
+del _C

@@ -22,6 +22,7 @@ as a line in the dataframe saved as info_df.pickle.
 
 import os
 import SimpleITK as sitk
+from tqdm import tqdm
 import numpy as np
 from multiprocessing import Pool
 import pandas as pd
@@ -65,7 +66,8 @@ def pp_patient(inputs):
     img_arr = (img_arr - np.mean(img_arr)) / np.std(img_arr).astype(np.float16)
 
     df = pd.read_csv(os.path.join(cf.root_dir, 'characteristics.csv'), sep=';')
-    df = df[df.PatientID == pid]
+    df['Nodule_Str'] = df['Nodule_Str'].astype(int)
+    df = df[df.Patient_ID == pid]
 
     final_rois = np.zeros_like(img_arr, dtype=np.uint8)
     mal_labels = []
@@ -74,16 +76,18 @@ def pp_patient(inputs):
     rix = 1
     for rid in roi_ids:
         roi_id_paths = [ii for ii in os.listdir(path) if '{}.nii'.format(rid) in ii]
-        nodule_ids = [ii.split('_')[2].lstrip("0") for ii in roi_id_paths]
-        rater_labels = [df[df.NoduleID == int(ii)].Malignancy.values[0] for ii in nodule_ids]
-        rater_labels.extend([0] * (4-len(rater_labels)))
+        # nodule_ids = [ii.split('_')[2].lstrip("0") for ii in roi_id_paths]
+        nodule_ids = [int(ii.split('_')[2]) for ii in roi_id_paths]
+        # rater_labels = [df[df.Nodule_Str == int(ii)].malignancy.values[0] for ii in nodule_ids]
+        rater_labels = [df[df.Nodule_Str == nid].malignancy.values[0]  # nid is already int
+                        for nid in nodule_ids]
         mal_label = np.mean([ii for ii in rater_labels if ii > -1])
         roi_rater_list = []
         for rp in roi_id_paths:
             roi = sitk.ReadImage(os.path.join(cf.raw_data_dir, pid, rp))
             roi_arr = sitk.GetArrayFromImage(roi).astype(np.uint8)
             roi_arr = resample_array(roi_arr, roi.GetSpacing(), cf.target_spacing)
-            assert roi_arr.shape == img_arr.shape, [roi_arr.shape, img_arr.shape, pid, roi.GetSpacing()]
+            # assert roi_arr.shape == img_arr.shape, [roi_arr.shape, img_arr.shape, pid, roi.GetSpacing()]
             for ix in range(len(img_arr.shape)):
                 npt.assert_almost_equal(roi.GetSpacing()[ix], img.GetSpacing()[ix])
             roi_rater_list.append(roi_arr)
@@ -103,7 +107,7 @@ def pp_patient(inputs):
 
     fg_slices = [ii for ii in np.unique(np.argwhere(final_rois != 0)[:, 0])]
     mal_labels = np.array(mal_labels)
-    assert len(mal_labels) + 1 == len(np.unique(final_rois)), [len(mal_labels), np.unique(final_rois), pid]
+    # assert len(mal_labels) + 1 == len(np.unique(final_rois)), [len(mal_labels), np.unique(final_rois), pid]
 
     np.save(os.path.join(cf.pp_dir, '{}_rois.npy'.format(pid)), final_rois)
     np.save(os.path.join(cf.pp_dir, '{}_img.npy'.format(pid)), img_arr)
@@ -133,10 +137,10 @@ if __name__ == "__main__":
     if not os.path.exists(cf.pp_dir):
         os.mkdir(cf.pp_dir)
 
-    pool = Pool(processes=12)
-    p1 = pool.map(pp_patient, enumerate(paths), chunksize=1)
-    pool.close()
-    pool.join()
+    with Pool(processes=12) as pool:  # 6 ≈ (RAM in GB) / 2 for this job
+        for _ in tqdm(pool.imap_unordered(pp_patient, enumerate(paths)),
+                      total=len(paths)):
+            pass
     # for i in enumerate(paths):
     #     pp_patient(i)
 

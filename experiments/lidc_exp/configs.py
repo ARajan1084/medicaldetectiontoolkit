@@ -28,9 +28,9 @@ class configs(DefaultConfigs):
         #    Preprocessing      #
         #########################
 
-        self.root_dir = '/path/to/raw/data'
-        self.raw_data_dir = '{}/data_nrrd'.format(self.root_dir)
-        self.pp_dir = '{}/pp_norm'.format(self.root_dir)
+        self.root_dir      = '/home/achintya/CS_598/data/lidc_exp'  # <‑‑ your project folder
+        self.raw_data_dir  = f'{self.root_dir}/nrrds'               # nrrd files per patient
+        self.pp_dir        = f'{self.root_dir}/pp_norm'
         self.target_spacing = (0.7, 0.7, 1.25)
 
         #########################
@@ -58,9 +58,9 @@ class configs(DefaultConfigs):
         # settings for deployment in cloud.
         if server_env:
             # path to preprocessed data.
-            self.pp_name = 'lidc_mdt_npz'
-            self.crop_name = 'pp_fg_slices_packed'
-            self.pp_data_path = '/datasets/datasets_ramien/lidc_exp/data/{}'.format(self.pp_name)
+            self.pp_name = 'pp_norm'
+            self.crop_name = 'info_df.pickle'
+            self.pp_data_path = f'{self.root_dir}/{self.pp_name}'
             self.pp_test_data_path = self.pp_data_path
             self.select_prototype_subset = None
 
