@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<Version Writer="D:\projects\release\MITK\Modules\PlanarFigure\src\IO\mitkPlanarFigureWriter.cpp" CVSRevision="$Revision: 17055 $" FileVersion="1" />
+<PlanarFigure type="PlanarPolygon">
+    <property key="closed" type="BoolProperty">
+        <bool value="true" />
+    </property>
+    <property key="initiallyplaced" type="BoolProperty">
+        <bool value="true" />
+    </property>
+    <property key="subdivision" type="BoolProperty">
+        <bool value="false" />
+    </property>
+    <ControlPoints>
+        <Vertex id="0" x="150.0" y="226.5625" /> 
+        <Vertex id="1" x="150.78125" y="225.78125" /> 
+        <Vertex id="2" x="150.78125" y="225.0" /> 
+        <Vertex id="3" x="151.5625" y="224.21875" /> 
+        <Vertex id="4" x="152.34375" y="223.4375" /> 
+        <Vertex id="5" x="151.5625" y="222.65625" /> 
+        <Vertex id="6" x="151.5625" y="221.875" /> 
+        <Vertex id="7" x="150.78125" y="221.09375" /> 
+        <Vertex id="8" x="150.0" y="221.09375" /> 
+        <Vertex id="9" x="149.21875" y="221.09375" /> 
+        <Vertex id="10" x="148.4375" y="221.09375" /> 
+        <Vertex id="11" x="147.65625" y="221.875" /> 
+        <Vertex id="12" x="146.875" y="221.875" /> 
+        <Vertex id="13" x="146.09375" y="222.65625" /> 
+        <Vertex id="14" x="145.3125" y="222.65625" /> 
+        <Vertex id="15" x="144.53125" y="223.4375" /> 
+        <Vertex id="16" x="144.53125" y="224.21875" /> 
+        <Vertex id="17" x="144.53125" y="225.0" /> 
+        <Vertex id="18" x="145.3125" y="225.78125" /> 
+        <Vertex id="19" x="146.09375" y="226.5625" /> 
+        <Vertex id="20" x="146.875" y="226.5625" /> 
+        <Vertex id="21" x="147.65625" y="226.5625" /> 
+        <Vertex id="22" x="148.4375" y="226.5625" /> 
+        <Vertex id="23" x="149.21875" y="226.5625" /> 
+        <Vertex id="24" x="150.0" y="226.5625" /> 
+
+    </ControlPoints>
+    <Geometry>
+        <transformParam param0="1" param1="0" param2="0" param3="0" param4="1" param5="0" param6="0" param7="0" param8="1" param9="-200.0" param10="-181.3000030517578" param11="-77.0" />
+        <boundsParam bound0="0" bound1="512" bound2="0" bound3="512" bound4="0" bound5="1" />
+        <Spacing x="1" y="1" z="1" />
+        <Origin x="-200.0" y="-181.3000030517578" z="-77.0" />
+    </Geometry>
+</PlanarFigure>

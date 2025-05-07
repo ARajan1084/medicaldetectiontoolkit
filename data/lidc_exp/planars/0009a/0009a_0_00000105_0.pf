@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<Version Writer="D:\projects\release\MITK\Modules\PlanarFigure\src\IO\mitkPlanarFigureWriter.cpp" CVSRevision="$Revision: 17055 $" FileVersion="1" />
+<PlanarFigure type="PlanarPolygon">
+    <property key="closed" type="BoolProperty">
+        <bool value="true" />
+    </property>
+    <property key="initiallyplaced" type="BoolProperty">
+        <bool value="true" />
+    </property>
+    <property key="subdivision" type="BoolProperty">
+        <bool value="false" />
+    </property>
+    <ControlPoints>
+        <Vertex id="0" x="157.8125" y="258.59375" /> 
+        <Vertex id="1" x="157.03125" y="259.375" /> 
+        <Vertex id="2" x="156.25" y="260.15625" /> 
+        <Vertex id="3" x="155.46875" y="260.9375" /> 
+        <Vertex id="4" x="155.46875" y="261.71875" /> 
+        <Vertex id="5" x="155.46875" y="262.5" /> 
+        <Vertex id="6" x="155.46875" y="263.28125" /> 
+        <Vertex id="7" x="156.25" y="264.0625" /> 
+        <Vertex id="8" x="157.03125" y="264.0625" /> 
+        <Vertex id="9" x="157.8125" y="263.28125" /> 
+        <Vertex id="10" x="158.59375" y="263.28125" /> 
+        <Vertex id="11" x="159.375" y="262.5" /> 
+        <Vertex id="12" x="160.15625" y="262.5" /> 
+        <Vertex id="13" x="160.9375" y="261.71875" /> 
+        <Vertex id="14" x="161.71875" y="260.9375" /> 
+        <Vertex id="15" x="161.71875" y="260.15625" /> 
+        <Vertex id="16" x="160.9375" y="259.375" /> 
+        <Vertex id="17" x="160.15625" y="258.59375" /> 
+        <Vertex id="18" x="159.375" y="258.59375" /> 
+        <Vertex id="19" x="158.59375" y="258.59375" /> 
+        <Vertex id="20" x="157.8125" y="258.59375" /> 
+
+    </ControlPoints>
+    <Geometry>
+        <transformParam param0="1" param1="0" param2="0" param3="0" param4="1" param5="0" param6="0" param7="0" param8="1" param9="-211.8000030517578" param10="-162.0" param11="-197.500000 " />
+        <boundsParam bound0="0" bound1="512" bound2="0" bound3="512" bound4="0" bound5="1" />
+        <Spacing x="1" y="1" z="1" />
+        <Origin x="-211.8000030517578" y="-162.0" z="-197.500000 " />
+    </Geometry>
+</PlanarFigure>

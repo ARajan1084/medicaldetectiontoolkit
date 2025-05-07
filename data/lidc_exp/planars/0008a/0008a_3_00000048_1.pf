@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<Version Writer="D:\projects\release\MITK\Modules\PlanarFigure\src\IO\mitkPlanarFigureWriter.cpp" CVSRevision="$Revision: 17055 $" FileVersion="1" />
+<PlanarFigure type="PlanarPolygon">
+    <property key="closed" type="BoolProperty">
+        <bool value="true" />
+    </property>
+    <property key="initiallyplaced" type="BoolProperty">
+        <bool value="true" />
+    </property>
+    <property key="subdivision" type="BoolProperty">
+        <bool value="false" />
+    </property>
+    <ControlPoints>
+        <Vertex id="0" x="93.75" y="225.78125" /> 
+        <Vertex id="1" x="92.96875" y="225.0" /> 
+        <Vertex id="2" x="92.96875" y="224.21875" /> 
+        <Vertex id="3" x="92.96875" y="223.4375" /> 
+        <Vertex id="4" x="93.75" y="223.4375" /> 
+        <Vertex id="5" x="94.53125" y="224.21875" /> 
+        <Vertex id="6" x="95.3125" y="224.21875" /> 
+        <Vertex id="7" x="96.09375" y="224.21875" /> 
+        <Vertex id="8" x="96.875" y="225.0" /> 
+        <Vertex id="9" x="97.65625" y="225.0" /> 
+        <Vertex id="10" x="98.4375" y="225.0" /> 
+        <Vertex id="11" x="99.21875" y="225.0" /> 
+        <Vertex id="12" x="98.4375" y="225.78125" /> 
+        <Vertex id="13" x="97.65625" y="225.78125" /> 
+        <Vertex id="14" x="96.875" y="225.78125" /> 
+        <Vertex id="15" x="96.09375" y="225.78125" /> 
+        <Vertex id="16" x="95.3125" y="225.78125" /> 
+        <Vertex id="17" x="94.53125" y="225.78125" /> 
+        <Vertex id="18" x="93.75" y="225.78125" /> 
+
+    </ControlPoints>
+    <Geometry>
+        <transformParam param0="1" param1="0" param2="0" param3="0" param4="1" param5="0" param6="0" param7="0" param8="1" param9="-199.5" param10="-200.0" param11="-170.720001" />
+        <boundsParam bound0="0" bound1="512" bound2="0" bound3="512" bound4="0" bound5="1" />
+        <Spacing x="1" y="1" z="1" />
+        <Origin x="-199.5" y="-200.0" z="-170.720001" />
+    </Geometry>
+</PlanarFigure>

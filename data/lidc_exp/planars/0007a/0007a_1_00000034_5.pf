@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<Version Writer="D:\projects\release\MITK\Modules\PlanarFigure\src\IO\mitkPlanarFigureWriter.cpp" CVSRevision="$Revision: 17055 $" FileVersion="1" />
+<PlanarFigure type="PlanarPolygon">
+    <property key="closed" type="BoolProperty">
+        <bool value="true" />
+    </property>
+    <property key="initiallyplaced" type="BoolProperty">
+        <bool value="true" />
+    </property>
+    <property key="subdivision" type="BoolProperty">
+        <bool value="false" />
+    </property>
+    <ControlPoints>
+        <Vertex id="0" x="231.25" y="215.625" /> 
+        <Vertex id="1" x="232.03125" y="214.84375" /> 
+        <Vertex id="2" x="232.8125" y="214.84375" /> 
+        <Vertex id="3" x="233.59375" y="214.0625" /> 
+        <Vertex id="4" x="233.59375" y="213.28125" /> 
+        <Vertex id="5" x="232.8125" y="212.5" /> 
+        <Vertex id="6" x="232.8125" y="211.71875" /> 
+        <Vertex id="7" x="233.59375" y="210.9375" /> 
+        <Vertex id="8" x="234.375" y="210.15625" /> 
+        <Vertex id="9" x="235.15625" y="209.375" /> 
+        <Vertex id="10" x="234.375" y="208.59375" /> 
+        <Vertex id="11" x="235.15625" y="207.8125" /> 
+        <Vertex id="12" x="235.15625" y="207.03125" /> 
+        <Vertex id="13" x="235.15625" y="206.25" /> 
+        <Vertex id="14" x="235.9375" y="205.46875" /> 
+        <Vertex id="15" x="236.71875" y="204.6875" /> 
+        <Vertex id="16" x="237.5" y="204.6875" /> 
+        <Vertex id="17" x="238.28125" y="203.90625" /> 
+        <Vertex id="18" x="237.5" y="203.125" /> 
+        <Vertex id="19" x="236.71875" y="203.125" /> 
+        <Vertex id="20" x="235.9375" y="203.125" /> 
+        <Vertex id="21" x="235.15625" y="203.125" /> 
+        <Vertex id="22" x="234.375" y="203.90625" /> 
+        <Vertex id="23" x="233.59375" y="203.90625" /> 
+        <Vertex id="24" x="232.8125" y="203.125" /> 
+        <Vertex id="25" x="232.03125" y="203.125" /> 
+        <Vertex id="26" x="231.25" y="202.34375" /> 
+        <Vertex id="27" x="230.46875" y="201.5625" /> 
+        <Vertex id="28" x="229.6875" y="200.78125" /> 
+        <Vertex id="29" x="228.90625" y="200.0" /> 
+        <Vertex id="30" x="228.125" y="200.0" /> 
+        <Vertex id="31" x="227.34375" y="200.78125" /> 
+        <Vertex id="32" x="227.34375" y="201.5625" /> 
+        <Vertex id="33" x="226.5625" y="202.34375" /> 
+        <Vertex id="34" x="225.78125" y="203.125" /> 
+        <Vertex id="35" x="225.78125" y="203.90625" /> 
+        <Vertex id="36" x="225.0" y="204.6875" /> 
+        <Vertex id="37" x="224.21875" y="204.6875" /> 
+        <Vertex id="38" x="223.4375" y="204.6875" /> 
+        <Vertex id="39" x="222.65625" y="204.6875" /> 
+        <Vertex id="40" x="221.875" y="205.46875" /> 
+        <Vertex id="41" x="221.09375" y="204.6875" /> 
+        <Vertex id="42" x="220.3125" y="204.6875" /> 
+        <Vertex id="43" x="219.53125" y="203.90625" /> 
+        <Vertex id="44" x="219.53125" y="203.125" /> 
+        <Vertex id="45" x="218.75" y="202.34375" /> 
+        <Vertex id="46" x="217.96875" y="203.125" /> 
+        <Vertex id="47" x="217.96875" y="203.90625" /> 
+        <Vertex id="48" x="217.96875" y="204.6875" /> 
+        <Vertex id="49" x="217.96875" y="205.46875" /> 
+        <Vertex id="50" x="217.96875" y="206.25" /> 
+        <Vertex id="51" x="217.96875" y="207.03125" /> 
+        <Vertex id="52" x="217.96875" y="207.8125" /> 
+        <Vertex id="53" x="218.75" y="208.59375" /> 
+        <Vertex id="54" x="219.53125" y="208.59375" /> 
+        <Vertex id="55" x="220.3125" y="208.59375" /> 
+        <Vertex id="56" x="221.09375" y="208.59375" /> 
+        <Vertex id="57" x="221.875" y="209.375" /> 
+        <Vertex id="58" x="222.65625" y="209.375" /> 
+        <Vertex id="59" x="223.4375" y="210.15625" /> 
+        <Vertex id="60" x="222.65625" y="210.9375" /> 
+        <Vertex id="61" x="223.4375" y="211.71875" /> 
+        <Vertex id="62" x="224.21875" y="211.71875" /> 
+        <Vertex id="63" x="225.0" y="212.5" /> 
+        <Vertex id="64" x="224.21875" y="213.28125" /> 
+        <Vertex id="65" x="225.0" y="214.0625" /> 
+        <Vertex id="66" x="225.78125" y="214.0625" /> 
+        <Vertex id="67" x="226.5625" y="214.0625" /> 
+        <Vertex id="68" x="227.34375" y="213.28125" /> 
+        <Vertex id="69" x="228.125" y="213.28125" /> 
+        <Vertex id="70" x="228.90625" y="213.28125" /> 
+        <Vertex id="71" x="229.6875" y="214.0625" /> 
+        <Vertex id="72" x="230.46875" y="214.84375" /> 
+        <Vertex id="73" x="231.25" y="215.625" /> 
+
+    </ControlPoints>
+    <Geometry>
+        <transformParam param0="1" param1="0" param2="0" param3="0" param4="1" param5="0" param6="0" param7="0" param8="1" param9="-200.0" param10="-181.3000030517578" param11="-49.5" />
+        <boundsParam bound0="0" bound1="512" bound2="0" bound3="512" bound4="0" bound5="1" />
+        <Spacing x="1" y="1" z="1" />
+        <Origin x="-200.0" y="-181.3000030517578" z="-49.5" />
+    </Geometry>
+</PlanarFigure>
